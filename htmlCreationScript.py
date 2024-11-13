@@ -18,11 +18,11 @@ html_content = f"""
     }}
 
     {container} .start-time::after {{
-        content: "{start_date}"; /* 替换为实际的开始时间 */
+        content: "{start_date.replace("-","/")}"; /* 替换为实际的开始时间 */
     }}
 
     {container} .close-time::after {{
-        content: "{end_date}"; /* 替换为实际的结束时间 */
+        content: "{end_date.replace("-","/")} 08:00 PM"; /* 替换为实际的结束时间 */
     }}
     /* 添加 Opening in Hibid 的不同状态样式 */
     {container} .opening-status.open {{
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {{
 
     // 解析 start-time 和 close-time
     const startDate = new Date('{start_date} 10:00 AM');
-    const closeDate = new Date('{end_date} 08:00 PM');
+    const closeDate = new Date('{end_date}');
 
     // 更新标题内容
     if (titleElement) {{
