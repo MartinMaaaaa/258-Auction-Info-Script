@@ -1,0 +1,99 @@
+
+<!-- CSS 样式 -->
+<style>
+    /* 添加 Total Lots、Start Time、Close Time 的值 */
+    .bid_container_1 .total-lots::after {
+        content: "1260"; /* 替换为实际的总数值 */
+    }
+
+    .bid_container_1 .start-time::after {
+        content: "2024/11/5"; /* 替换为实际的开始时间 */
+    }
+
+    .bid_container_1 .close-time::after {
+        content: "2024/11/18 08:00 PM"; /* 替换为实际的结束时间 */
+    }
+    /* 添加 Opening in Hibid 的不同状态样式 */
+    .bid_container_1 .opening-status.open {
+        color: green; /* Opening in Hibid 时为绿色 */
+    }
+
+    .bid_container_1 .opening-status.closed {
+        color: red; /* 结束后为红色 */
+    }
+    
+    .bid_container_1 .lot-info p{
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- JavaScript 代码 -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  
+    // 预定义每张图片的背景图片 URL
+    const imageUrls = [
+        "https://cdn.hibid.com/img.axd?id=8045009475&wid=&checksum=c5or1IO9kFv5YsPhvCdCpARX5JkgLE2h",
+        "https://cdn.hibid.com/img.axd?id=8045009488&wid=&checksum=c5or1IO9kFuOyBnMe%2fIhC7C0sz%2fdCDD7",
+        "https://cdn.hibid.com/img.axd?id=8045009477&wid=&checksum=c5or1IO9kFvqdm35z2SLW23g6jO8u0C7",
+        "https://cdn.hibid.com/img.axd?id=8045170947&wid=&checksum=xhdlC0GjD9QAMA1hq4d%2bAxUzoPr7D3WZ",
+        "https://cdn.hibid.com/img.axd?id=8045009530&wid=&checksum=D9FN3r7HvUGVNJ3f7WcVoPFrqV%2btk7e1"
+    ];
+
+    // 获取所有轮播项中的图片容器
+    const imageContainers = document.querySelectorAll('.bid_container_1 .elementor-carousel-image');
+    const titleElement = document.querySelector('.bid_container_1 .bid-title h1'); // 获取标题元素
+    const openingStatusElement = document.querySelector('.bid_container_1 .opening-status h2'); // 获取 Opening in Hibid 部分
+    const clickElement = document.querySelector('.bid_container_1 .elementor-main-swiper'); // 
+    const viewMore = document.querySelector('.bid_container_1 .view_more'); // 
+    const auctionDetail = document.querySelector('.bid_container_1 .auction_detail'); // 
+    
+    clickElement.addEventListener("click", () => {
+    window.open("https://ccpowerdeals.hibid.com/catalog/594888/high-value-online-returns-and-unclaimed-freight--264-", "_blank");  // 在新窗口打开链接
+   });
+   
+   viewMore.addEventListener("click", () => {
+    window.open("https://ccpowerdeals.hibid.com/catalog/594888/high-value-online-returns-and-unclaimed-freight--264-", "_blank");  // 在新窗口打开链接
+   });
+   auctionDetail.addEventListener("click", () => {
+    window.open("https://ccpowerdeals.hibid.com/auction/594888/high-value-online-returns-and-unclaimed-freight--264-", "_blank");  // 在新窗口打开链接
+   });
+    // 计算当前时间
+    const currentTime = new Date();
+
+    // 解析 start-time 和 close-time
+    const startDate = new Date('2024-11-5 10:00 AM');
+    const closeDate = new Date('2024-11-18');
+
+    // 更新标题内容
+    if (titleElement) {
+        titleElement.textContent = "HIGH VALUE ONLINE RETURNS AND UNCLAIMED FREIGHT (264)"; // 根据需要设置标题内容
+    }
+
+    // 控制 "Opening in Hibid" 文本颜色
+    if (openingStatusElement) {
+        if (currentTime >= startDate && currentTime <= closeDate) {
+            openingStatusElement.style.color = "green";  // 当前时间在起止时间之间
+            openingStatusElement.textContent = "Opening in Hibid";  // 设置文字为 Opening in Hibid
+        } else {
+            openingStatusElement.style.color = "red";  // 当前时间不在起止时间之间
+            openingStatusElement.textContent = "Closed";  // 设置文字为 Closed
+        }
+    }
+
+    // 检查是否找到 .elementor-carousel-image 元素
+    if (imageContainers.length > 0) {
+        // 为每个容器设置 background-image 和点击链接
+        imageContainers.forEach((container, index) => {
+            // 确保容器存在，并且当前索引在数组范围内
+            if (index < imageUrls.length ) {
+                // 设置 background-image
+                container.style.backgroundImage = `url(${imageUrls[index]})`;
+
+                // 添加点击事件，将页面重定向到对应链接地址
+                container.style.cursor = "pointer";  // 设置鼠标样式为手指形状
+            }
+        });
+    }
+});
+</script>
