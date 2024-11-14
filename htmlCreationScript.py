@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", function() {{
 
     // 获取所有轮播项中的图片容器
     const imageContainers = document.querySelectorAll('{container} .elementor-carousel-image');
-    const titleElement = document.querySelector('{container} .bid-title h1'); // 获取标题元素
-    const openingStatusElement = document.querySelector('{container} .opening-status h2'); // 获取 Opening in Hibid 部分
+    const titleElement = document.querySelector('{container} .bid-title h2'); // 获取标题元素
+    const openingStatusElement = document.querySelector('{container} .opening-status h3'); // 获取 Opening in Hibid 部分
     const clickElement = document.querySelector('{container} .elementor-main-swiper'); // 
     const viewMore = document.querySelector('{container} .view_more'); // 
     const auctionDetail = document.querySelector('{container} .auction_detail'); // 
