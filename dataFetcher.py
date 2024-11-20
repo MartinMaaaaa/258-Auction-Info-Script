@@ -73,7 +73,7 @@ def fetch_data(url, id_of_img):
 
         driver.quit()
 
-        return title_text, start_date, end_date, lot_count,img_url1, img_url2, img_url3, img_url4, img_url5
+        return str(title_text), str(start_date), str(end_date), str(lot_count), str(img_url1), str(img_url2), str(img_url3), str(img_url4), str(img_url5)
 
     except Exception as e:
         print(f"Error fetching data: {e}")

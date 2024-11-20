@@ -74,23 +74,22 @@ document.addEventListener("DOMContentLoaded", function() {{
 
     // 解析 start-time 和 close-time
     const startDate = new Date('{start_date} 10:00 AM');
-    const closeDate = new Date('{end_date}');
+    const closeDate = new Date('{end_date} 08:00 PM');
+    
+    // 获取需要隐藏的容器元素
+    const bidContainer = document.querySelector('{container}');
 
     // 更新标题内容
     if (titleElement) {{
         titleElement.textContent = "{title_text}"; // 根据需要设置标题内容
     }}
 
-    // 控制 "Opening in Hibid" 文本颜色
-    if (openingStatusElement) {{
-        if (currentTime >= startDate && currentTime <= closeDate) {{
-            openingStatusElement.style.color = "green";  // 当前时间在起止时间之间
-            openingStatusElement.textContent = "Opening in Hibid";  // 设置文字为 Opening in Hibid
-        }} else {{
-            openingStatusElement.style.color = "red";  // 当前时间不在起止时间之间
-            openingStatusElement.textContent = "Closed";  // 设置文字为 Closed
+    // 判断是否在开场时间段内
+    if (currentTime < startDate || currentTime > closeDate) {{ // 不在开场时间段内，隐藏整个元素
+        if (bidContainer) {{
+            bidContainer.style.display = "none";
         }}
-    }}
+    }} 
 
     // 检查是否找到 .elementor-carousel-image 元素
     if (imageContainers.length > 0) {{
