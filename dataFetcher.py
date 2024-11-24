@@ -57,11 +57,25 @@ def fetch_data(url, id_of_img):
         start_date = start_date.replace("/","-")
         end_date = end_date.replace("/", "-")
 
-        img_url1 = simplify_url(driver.find_element(By.XPATH, '//*[@id="'+str(int(id_of_img)) +'"]').get_attribute('src'))
-        img_url2 = simplify_url(driver.find_element(By.XPATH, '//*[@id="' + str(int(id_of_img)+1) + '"]').get_attribute('src'))
-        img_url3 = simplify_url(driver.find_element(By.XPATH, '//*[@id="' + str(int(id_of_img)+2) + '"]').get_attribute('src'))
-        img_url4 = simplify_url(driver.find_element(By.XPATH, '//*[@id="' + str(int(id_of_img)+3) + '"]').get_attribute('src'))
-        img_url5 = simplify_url(driver.find_element(By.XPATH, '//*[@id="' + str(int(id_of_img)+4) + '"]').get_attribute('src'))
+        img_urls = []
+        id_of_img = int(id_of_img)  # 确保 id_of_img 是整数
+        i = 0  # 偏移量初始值
+
+        while len(img_urls) < 5:  # 确保收集到 5 个有效链接
+            try:
+                xpath = f'//*[@id="{id_of_img + i}"]'
+                img_src = driver.find_element(By.XPATH, xpath).get_attribute('src')
+                img_src = simplify_url(img_src)
+
+                if img_src:  # 检查链接是否非空
+                    img_urls.append(img_src)  # 如果有效，加入列表
+            except Exception:
+                pass  # 如果发生异常，直接跳过
+            finally:
+                i += 1  # 无论是否成功处理，偏移量递增
+
+        # 将列表中的链接分配给 img_url1 到 img_url5
+        img_url1, img_url2, img_url3, img_url4, img_url5 = img_urls
 
         # 获取 lot 数字
 
