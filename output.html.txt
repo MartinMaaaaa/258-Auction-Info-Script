@@ -2,27 +2,19 @@
 <!-- CSS 样式 -->
 <style>
     /* 添加 Total Lots、Start Time、Close Time 的值 */
-    .bid_container_4 .total-lots::after {
-        content: "1655"; /* 替换为实际的总数值 */
+    .bid_container_2 .total-lots::after {
+        content: "1329"; /* 替换为实际的总数值 */
     }
 
-    .bid_container_4 .start-time::after {
-        content: "2024/11/22"; /* 替换为实际的开始时间 */
+    .bid_container_2 .start-time::after {
+        content: "2024/12/06"; /* 替换为实际的开始时间 */
     }
 
-    .bid_container_4 .close-time::after {
-        content: "2024/11/29 08:00 PM"; /* 替换为实际的结束时间 */
-    }
-    /* 添加 Opening in Hibid 的不同状态样式 */
-    .bid_container_4 .opening-status.open {
-        color: green; /* Opening in Hibid 时为绿色 */
-    }
-
-    .bid_container_4 .opening-status.closed {
-        color: red; /* 结束后为红色 */
+    .bid_container_2 .close-time::after {
+        content: "2024/12/11 08:00 PM"; /* 替换为实际的结束时间 */
     }
     
-    .bid_container_4 .lot-info p{
+    .bid_container_2 .lot-info p{
         margin-bottom: 10px;
     }
 </style>
@@ -33,44 +25,44 @@ document.addEventListener("DOMContentLoaded", function() {
   
     // 预定义每张图片的背景图片 URL
     const imageUrls = [
-        "https://cdn.hibid.com/img.axd?id=8051647835&wid=&checksum=Rn7J0UY0D5gDtzFH3keSozBIEMuRFyGs",
-        "https://cdn.hibid.com/img.axd?id=8051647828&wid=&checksum=Rn7J0UY0D5gwS7lDOM1UYYEzxF2qfvo4",
-        "https://cdn.hibid.com/img.axd?id=8051647862&wid=&checksum=Rn7J0UY0D5iaXMu0Ylszhghoor4QOkva",
-        "https://cdn.hibid.com/img.axd?id=8051647875&wid=&checksum=Rn7J0UY0D5jLmgypBWpd75KZA4tKcPAh",
-        "https://cdn.hibid.com/img.axd?id=8051647905&wid=&checksum=voQgoAmW0PUp%2btQmx5KnrTtihBYIeofv"
+        "https://cdn.hibid.com/img.axd?id=8058334436&wid=&checksum=NcokTQBuNr8D1l%2f3kNGbpIWNqUq3ligi",
+        "https://cdn.hibid.com/img.axd?id=8058334445&wid=&checksum=NcokTQBuNr%2bysBnt1WctdPpSmGv8ZNcz",
+        "https://cdn.hibid.com/img.axd?id=8058334460&wid=&checksum=NcokTQBuNr9OnkmXWGhzAZdPe%2fWJjhCD",
+        "https://cdn.hibid.com/img.axd?id=8058334473&wid=&checksum=NcokTQBuNr93vGLtYoFVHP0GfbI7EoMi",
+        "https://cdn.hibid.com/img.axd?id=8058334469&wid=&checksum=NcokTQBuNr9F1LAEQLlZsCC8Vi00CwGf"
     ];
 
     // 获取所有轮播项中的图片容器
-    const imageContainers = document.querySelectorAll('.bid_container_4 .elementor-carousel-image');
-    const titleElement = document.querySelector('.bid_container_4 .bid-title h2'); // 获取标题元素
-    const openingStatusElement = document.querySelector('.bid_container_4 .opening-status h3'); // 获取 Opening in Hibid 部分
-    const clickElement = document.querySelector('.bid_container_4 .elementor-main-swiper'); // 
-    const viewMore = document.querySelector('.bid_container_4 .view_more'); // 
-    const auctionDetail = document.querySelector('.bid_container_4 .auction_detail'); // 
+    const imageContainers = document.querySelectorAll('.bid_container_2 .elementor-carousel-image');
+    const titleElement = document.querySelector('.bid_container_2 .bid-title h2'); // 获取标题元素
+    const openingStatusElement = document.querySelector('.bid_container_2 .opening-status h3'); // 获取 Opening in Hibid 部分
+    const clickElement = document.querySelector('.bid_container_2 .elementor-main-swiper'); // 
+    const viewMore = document.querySelector('.bid_container_2 .view_more'); // 
+    const auctionDetail = document.querySelector('.bid_container_2 .auction_detail'); // 
     
     clickElement.addEventListener("click", () => {
-    window.open("https://ccpowerdeals.hibid.com/catalog/599721/high-value-online-returns-and-unclaimed-freight--271-", "_blank");  // 在新窗口打开链接
+    window.open("https://ccpowerdeals.hibid.com/catalog/603345/high-value-online-returns-and-unclaimed-freight--277-", "_blank");  // 在新窗口打开链接
    });
    
    viewMore.addEventListener("click", () => {
-    window.open("https://ccpowerdeals.hibid.com/catalog/599721/high-value-online-returns-and-unclaimed-freight--271-", "_blank");  // 在新窗口打开链接
+    window.open("https://ccpowerdeals.hibid.com/catalog/603345/high-value-online-returns-and-unclaimed-freight--277-", "_blank");  // 在新窗口打开链接
    });
    auctionDetail.addEventListener("click", () => {
-    window.open("https://ccpowerdeals.hibid.com/auction/599721/high-value-online-returns-and-unclaimed-freight--271-", "_blank");  // 在新窗口打开链接
+    window.open("https://ccpowerdeals.hibid.com/auction/603345/high-value-online-returns-and-unclaimed-freight--277-", "_blank");  // 在新窗口打开链接
    });
     // 计算当前时间
     const currentTime = new Date();
 
     // 解析 start-time 和 close-time
-    const startDate = new Date('2024-11-22 10:00 AM');
-    const closeDate = new Date('2024-11-29 08:00 PM');
+    const startDate = new Date('2024-12-06T10:00:00');
+    const closeDate = new Date('2024-12-11T20:00:00');
     
     // 获取需要隐藏的容器元素
-    const bidContainer = document.querySelector('.bid_container_4');
+    const bidContainer = document.querySelector('.bid_container_2');
 
     // 更新标题内容
     if (titleElement) {
-        titleElement.textContent = "HIGH VALUE ONLINE RETURNS AND UNCLAIMED FREIGHT (271)"; // 根据需要设置标题内容
+        titleElement.textContent = "HIGH VALUE ONLINE RETURNS AND UNCLAIMED FREIGHT (277)"; // 根据需要设置标题内容
     }
 
     // 判断是否在开场时间段内

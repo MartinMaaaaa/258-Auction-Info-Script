@@ -5,8 +5,32 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime
 import re
 
+
+def format_date_to_iso(date_str):
+    """
+    :param date_str: 输入的日期字符串
+    :return: 转换后的日期字符串，格式为 YYYY-MM-DD
+    """
+    # 尝试的日期格式列表
+    date_formats = [
+        "%m/%d/%Y", "%Y/%m/%d", "%d-%m-%Y", "%Y-%m-%d",
+        "%d/%m/%Y", "%m-%d-%Y", "%Y.%m.%d", "%d.%m.%Y"
+    ]
+
+    for date_format in date_formats:
+        try:
+            # 尝试解析日期
+            parsed_date = datetime.strptime(date_str, date_format)
+            # 格式化为 ISO 8601 格式
+            return parsed_date.strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+
+    # 如果所有格式都不匹配，抛出异常
+    raise ValueError(f"无法解析日期字符串: {date_str}")
 
 def simplify_url(url: str) -> str:
     # 从 URL 中提取 base_url
@@ -51,11 +75,12 @@ def fetch_data(url, id_of_img):
         title_text = title_element.text
 
         # 获取 date_text 并拆分为 start_date 和 end_date
-        date_text = date_element.text  # 假设 date_text 格式是 "2024/11/5 - 2024/11/18"
-        date_text = date_text.replace("Date(s) ", "")
-        start_date, end_date = date_text.split(" - ")  # 拆分 start 和 end 日期
-        start_date = start_date.replace("/","-")
-        end_date = end_date.replace("/", "-")
+        date_text = date_element.text.replace("Date(s) ", "")  # 假设 date_text 格式是 "2024/11/5 - 2024/11/18"
+        start_date_raw, end_date_raw = date_text.split(" - ")  # 拆分 start 和 end 日期
+
+        # 使用日期解析函数
+        start_date = format_date_to_iso(start_date_raw)
+        end_date = format_date_to_iso(end_date_raw)
 
         img_urls = []
         id_of_img = int(id_of_img)  # 确保 id_of_img 是整数

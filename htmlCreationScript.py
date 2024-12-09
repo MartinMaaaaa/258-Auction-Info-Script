@@ -24,14 +24,6 @@ html_content = f"""
     {container} .close-time::after {{
         content: "{end_date.replace("-","/")} 08:00 PM"; /* 替换为实际的结束时间 */
     }}
-    /* 添加 Opening in Hibid 的不同状态样式 */
-    {container} .opening-status.open {{
-        color: green; /* Opening in Hibid 时为绿色 */
-    }}
-
-    {container} .opening-status.closed {{
-        color: red; /* 结束后为红色 */
-    }}
     
     {container} .lot-info p{{
         margin-bottom: 10px;
@@ -73,8 +65,8 @@ document.addEventListener("DOMContentLoaded", function() {{
     const currentTime = new Date();
 
     // 解析 start-time 和 close-time
-    const startDate = new Date('{start_date} 10:00 AM');
-    const closeDate = new Date('{end_date} 08:00 PM');
+    const startDate = new Date('{start_date}T10:00:00');
+    const closeDate = new Date('{end_date}T20:00:00');
     
     // 获取需要隐藏的容器元素
     const bidContainer = document.querySelector('{container}');
