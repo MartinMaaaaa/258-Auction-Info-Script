@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {{
 
     // 解析 start-time 和 close-time
     const startDate = new Date('{start_date}T10:00:00');
-    const closeDate = new Date('{end_date}T20:00:00');
+    const closeDate = new Date('{end_date}T23:59:59');
     
     // 获取需要隐藏的容器元素
     const bidContainer = document.querySelector('{container}');
