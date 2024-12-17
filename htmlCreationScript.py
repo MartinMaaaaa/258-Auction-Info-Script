@@ -69,8 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {{
     const closeDate = new Date('{end_date}T23:59:59');
     
     // 获取需要隐藏的容器元素
-    const bidContainer = document.querySelector('{container}');
-
+    const bidContainer = document.querySelector('{container}'); 
     // 更新标题内容
     if (titleElement) {{
         titleElement.textContent = "{title_text}"; // 根据需要设置标题内容
