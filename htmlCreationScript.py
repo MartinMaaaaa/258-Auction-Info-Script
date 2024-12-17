@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {{
 
     // 解析 start-time 和 close-time
     const startDate = new Date('{start_date}T10:00:00');
+    const endDate = new Date('{end_date}T20:00:00');
     const closeDate = new Date('{close_date}T04:59:59'); // 第二天凌晨5点自动下场
     
     // 获取需要隐藏的容器元素
@@ -85,6 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {{
     if (currentTime < startDate || currentTime > closeDate) {{ // 不在开场时间段内，隐藏整个元素
         if (bidContainer) {{
             bidContainer.style.display = "none";
+        }}
+    }} 
+    // 判断是否在开场时间段内
+    if (currentTime > endDate && currentTime < closeDate) {{ 
+        if (bidContainer) {{
+            openingStatusElement.textContent = "THE BIDDING IS ON GOING!!!"; // 根据需要设置标题内容
         }}
     }} 
 

@@ -55,7 +55,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 解析 start-time 和 close-time
     const startDate = new Date('2024-12-14T10:00:00');
-    const closeDate = new Date('2024-12-20T04:59:59');
+    const endDate = new Date('2024-12-19T20:00:00');
+    const closeDate = new Date('2024-12-20T04:59:59'); // 第二天凌晨5点自动下场
     
     // 获取需要隐藏的容器元素
     const bidContainer = document.querySelector('.bid_container_4'); 
@@ -68,6 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (currentTime < startDate || currentTime > closeDate) { // 不在开场时间段内，隐藏整个元素
         if (bidContainer) {
             bidContainer.style.display = "none";
+        }
+    } 
+    // 判断是否在开场时间段内
+    if (currentTime > endDate && currentTime < closeDate) { 
+        if (bidContainer) {
+            openingStatusElement.textContent = "THE BIDDING IS ON GOING!!!"; // 根据需要设置标题内容
         }
     } 
 
