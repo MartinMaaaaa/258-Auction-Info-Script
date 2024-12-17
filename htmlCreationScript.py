@@ -1,5 +1,5 @@
 from dataFetcher import fetch_data  # 导入 fetch_data 函数
-
+from datetime import datetime, timedelta
 # 获取目标网址
 url = input("请输入目标网址 (e.g: https://ccpowerdeals.hibid.com/catalog/594888/high-value-online-returns-and-unclaimed-freight--264-): ")
 id_of_img = input("请输入第一个开始爬取的图片id（e.g：221669508）：")
@@ -7,6 +7,12 @@ container = ".bid_container_" + str(input("输入container#（e.g: 1)： "))
 detail = url.replace("/catalog/", "/auction/")
 # 调用 fetch_data 函数来获取数据
 title_text, start_date, end_date, lot_count,img_url1,img_url2,img_url3,img_url4,img_url5 = fetch_data(url,id_of_img)
+
+# 修改日期为第二天，用于官场
+date_format = "%Y-%m-%d"
+date_object = datetime.strptime(end_date, date_format)
+next_day = date_object + timedelta(days=1)
+close_date = next_day.strftime(date_format)
 
 # 定义 HTML 内容并替换占位符
 html_content = f"""
@@ -66,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {{
 
     // 解析 start-time 和 close-time
     const startDate = new Date('{start_date}T10:00:00');
-    const closeDate = new Date('{end_date}T23:59:59');
+    const closeDate = new Date('{close_date}T04:59:59'); // 第二天凌晨5点自动下场
     
     // 获取需要隐藏的容器元素
     const bidContainer = document.querySelector('{container}'); 
