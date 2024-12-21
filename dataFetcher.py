@@ -85,12 +85,13 @@ def fetch_data(url, id_of_img):
         img_urls = []
         id_of_img = int(id_of_img)  # 确保 id_of_img 是整数
         i = 0  # 偏移量初始值
-
         while len(img_urls) < 5:  # 确保收集到 5 个有效链接
             try:
-                xpath = f'//*[@id="{id_of_img + i}"]'
+                xpath = f'//*[@id="lot-{id_of_img + i}"]/div/div/div[2]/div[2]/a/div/app-thumbnail/div/img'
+                print(xpath)
                 img_src = driver.find_element(By.XPATH, xpath).get_attribute('src')
                 img_src = simplify_url(img_src)
+
 
                 if img_src:  # 检查链接是否非空
                     img_urls.append(img_src)  # 如果有效，加入列表
